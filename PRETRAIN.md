@@ -13,7 +13,8 @@ python submitit_pretrain.py \
     --epochs 800 \
     --warmup_epochs 40 \
     --blr 1.5e-4 --weight_decay 0.05 \
-    --data_path ${IMAGENET_DIR}
+    --lc_path /g/data/y89/jp6476/Seismic_sample
+    --excel_path /g/data/y89/jp6476/Maryum2021.xlsx
 ```
 - Here the effective batch size is 64 (`batch_size` per gpu) * 8 (`nodes`) * 8 (gpus per node) = 4096. If memory or # gpus is limited, use `--accum_iter` to maintain the effective batch size, which is `batch_size` (per gpu) * `nodes` * 8 (gpus per node) * `accum_iter`.
 - `blr` is the base learning rate. The actual `lr` is computed by the [linear scaling rule](https://arxiv.org/abs/1706.02677): `lr` = `blr` * effective batch size / 256.
